@@ -7,6 +7,8 @@ import com.Debtly10.models.Customer;
 import com.Debtly10.models.Mortgage;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MortgageService {
 
@@ -31,5 +33,10 @@ public class MortgageService {
         mortgageRepository.save(mortgage);
         return "mortgage added successfully";
 
+    }
+
+    public List<Mortgage> getMortgageByCustomer(Long cid) {
+        Customer customer = customerRepository.findById(cid).get();
+        return customer.getMortgageList();
     }
 }
