@@ -31,6 +31,7 @@ public class MortgageService {
         mortgage.setLeftAmount(mortgageRegistrationDTO.getLeftAmount());
         mortgage.setProductName(mortgageRegistrationDTO.getProductName());
         mortgage.setMarketValue(mortgageRegistrationDTO.getMarketValue());
+        mortgage.setInterestRate(mortgage.getInterestRate());
         Customer customer = customerRepository.findById(id).get();
         mortgage.setCustomer(customer);
         mortgageRepository.save(mortgage);
@@ -70,6 +71,9 @@ public class MortgageService {
 
         if(mortgageUpdateDto.getGivenAmount() != 0){
             mortgage.setGivenAmount(mortgageUpdateDto.getGivenAmount());
+        }
+        if(mortgageUpdateDto.getInterestRate() != 0){
+            mortgage.setInterestRate(mortgageUpdateDto.getInterestRate());
         }
         return "mortgage updated successfully";
     }
