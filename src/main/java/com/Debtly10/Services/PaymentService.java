@@ -3,6 +3,7 @@ package com.Debtly10.Services;
 import com.Debtly10.DTOS.PaymentRegistrationDTO;
 import com.Debtly10.Repository.MortgageRepository;
 import com.Debtly10.Repository.PaymentRepository;
+import com.Debtly10.models.Customer;
 import com.Debtly10.models.Mortgage;
 import com.Debtly10.models.Payment;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,19 @@ public class PaymentService {
         mortgage.setLeftAmount(newAmount);
         mortgageRepository.save(mortgage);
         payment.setMortgage(mortgage);
+        paymentRepository.save(payment);
         return " payment added successfully";
     }
+
+//    Mortgage mortgage= new Mortgage();
+//        mortgage.setGivenAmount(mortgageRegistrationDTO.getGivenAmount());
+//        mortgage.setLastPaid(mortgageRegistrationDTO.getLastPaid());
+//        mortgage.setIssueDate(mortgageRegistrationDTO.getIssueDate());
+//        mortgage.setLeftAmount(mortgageRegistrationDTO.getLeftAmount());
+//        mortgage.setProductName(mortgageRegistrationDTO.getProductName());
+//        mortgage.setMarketValue(mortgageRegistrationDTO.getMarketValue());
+//    Customer customer = customerRepository.findById(id).get();
+//        mortgage.setCustomer(customer);
+//        mortgageRepository.save(mortgage);
+//        return "mortgage added successfully";
 }

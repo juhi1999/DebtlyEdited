@@ -1,5 +1,6 @@
 package com.Debtly10.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Payment {
     @Column(nullable = false)
     private Date date;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "mortgage_id")
     private Mortgage mortgage;

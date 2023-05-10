@@ -1,6 +1,7 @@
 package com.Debtly10.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,6 +46,7 @@ public class Mortgage {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "mortgage", cascade = {CascadeType.REMOVE})
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Payment> paymentList;
