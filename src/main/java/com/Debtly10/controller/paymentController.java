@@ -37,4 +37,10 @@ public class paymentController {
 
     }
 
+    @PostMapping("/see_total_due/{mid}")
+    public float totalDue(@RequestBody PaymentRegistrationDTO paymentRegistrationDTO,@PathVariable Long mid)
+    {
+        return paymentService.seeDue(paymentRegistrationDTO,mid);
+    }
+
 }

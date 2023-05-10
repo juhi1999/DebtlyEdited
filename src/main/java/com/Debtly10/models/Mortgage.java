@@ -41,6 +41,8 @@ public class Mortgage {
 
     private Date lastPaid;
 
+    private float interestRate;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customer_id")

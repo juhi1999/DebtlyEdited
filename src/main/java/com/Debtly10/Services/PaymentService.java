@@ -8,6 +8,8 @@ import com.Debtly10.models.Mortgage;
 import com.Debtly10.models.Payment;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,14 +31,22 @@ public class PaymentService {
         payment.setAmount(paymentRegistrationDTO.getAmount());
         payment.setDate(paymentRegistrationDTO.getDate());
         Mortgage mortgage = mortgageRepository.findById(mid).get();
+
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = new Date();
+        String strDate = sdfDate.format(now);
+        long diff = paymentRegistrationDTO.getDate().getTime()-mortgage.getLastPaid().getTime();
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+        float rate = mortgage.getInterestRate();
+        float interest = (mortgage.getLeftAmount() * diffDays *rate)/100;
         float temp= mortgage.getLeftAmount();
-        float newAmount = temp - payment.getAmount();
+        float newAmount = temp + interest - payment.getAmount();
         mortgage.setLeftAmount(newAmount);
         mortgage.setLastPaid(payment.getDate());
         mortgageRepository.save(mortgage);
         payment.setMortgage(mortgage);
         paymentRepository.save(payment);
-        return " payment added successfully";
+        return " payment added successfully" + diffDays;
     }
 
     public List<Payment> getAllPayment() {
@@ -45,6 +55,25 @@ public class PaymentService {
 
     public void deletePayment(Long pid) {
         paymentRepository.deleteById(pid);
+    }
+
+    public float seeDue(PaymentRegistrationDTO paymentRegistrationDTO ,Long mid) {
+        Mortgage mortgage = mortgageRepository.findById(mid).get();
+        Payment payment = new Payment();
+        payment.setAmount(paymentRegistrationDTO.getAmount());
+        payment.setDate(paymentRegistrationDTO.getDate());
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = new Date();
+        String strDate = sdfDate.format(now);
+        long diff = paymentRegistrationDTO.getDate().getTime()-mortgage.getLastPaid().getTime();
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+        float rate = mortgage.getInterestRate();
+        float interest = (mortgage.getLeftAmount() * diffDays *rate)/100;
+        float temp= mortgage.getLeftAmount();
+        float newAmount = temp + interest;
+        return newAmount ;
+
+
     }
 
 

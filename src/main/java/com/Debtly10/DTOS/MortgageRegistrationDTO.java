@@ -17,6 +17,7 @@ public class MortgageRegistrationDTO {
     private Date issueDate;
 
     private Date lastPaid;
+    private float interestRate;
 
     public MortgageRegistrationDTO(
 
@@ -25,13 +26,23 @@ public class MortgageRegistrationDTO {
             @JsonProperty("givenAmount") float givenAmount,
             @JsonProperty("leftAmount") float leftAmount,
             @JsonProperty("issueDate") Date issueDate,
-            @JsonProperty("lastPaid") Date lastPaid) {
+            @JsonProperty("lastPaid") Date lastPaid,
+            @JsonProperty("interestRate") float interestRate) {
         this.productName = productName;
         this.marketValue = marketValue;
         this.givenAmount = givenAmount;
         this.leftAmount = leftAmount;
         this.issueDate = issueDate;
         this.lastPaid = lastPaid;
+        this.interestRate= interestRate;
+    }
+
+    public float getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(float interestRate) {
+        this.interestRate = interestRate;
     }
 
     public String getProductName() {

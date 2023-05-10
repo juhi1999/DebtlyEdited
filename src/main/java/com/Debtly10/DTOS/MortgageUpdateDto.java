@@ -13,6 +13,16 @@ public class MortgageUpdateDto {
     private Date issueDate;
     private Date lastPaid;
 
+    private float interestRate;
+
+    public float getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(float interestRate) {
+        this.interestRate = interestRate;
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -68,12 +78,14 @@ public class MortgageUpdateDto {
             @JsonProperty("leftAmount") float leftAmount,
             @JsonProperty("givenAmount") float givenAmount,
             @JsonProperty("issueDate") Date issueDate,
-            @JsonProperty("lastPaid") Date lastPaid) {
+            @JsonProperty("lastPaid") Date lastPaid,
+            @JsonProperty("interestRate") float interestRate) {
         this.productName = productName;
         this.marketValue = marketValue;
         this.leftAmount = leftAmount;
         this.givenAmount = givenAmount;
         this.issueDate = issueDate;
         this.lastPaid = lastPaid;
+        this.interestRate=interestRate;
     }
 }
