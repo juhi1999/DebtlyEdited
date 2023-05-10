@@ -1,8 +1,11 @@
 package com.Debtly10.controller;
 
 import com.Debtly10.DTOS.CustomerRegistrationDTO;
+import com.Debtly10.DTOS.CustomerUpdateDto;
 import com.Debtly10.DTOS.MortgageRegistrationDTO;
+import com.Debtly10.DTOS.MortgageUpdateDto;
 import com.Debtly10.Services.MortgageService;
+import com.Debtly10.models.Customer;
 import com.Debtly10.models.Mortgage;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +31,26 @@ public class mortgageController {
     {
         return mortgageService.getMortgageByCustomer(cid);
     }
+
+    @GetMapping("/get_mortgages")
+    public List<Mortgage> getMortgages(){
+        return mortgageService.getAllMortgage();
+    }
+
+    @DeleteMapping("/delete_mortgage/{mid}")
+    public String deleteMortgage(@PathVariable Long mid)
+    {
+        return mortgageService.deleteMortgage(mid);
+
+    }
+
+    @PatchMapping("/update_mortgage/{mid}")
+    public String updateMortgage(@RequestBody MortgageUpdateDto mortgageUpdateDto,
+                                 @PathVariable Long mid) {
+        return mortgageService.updateMortgage(mortgageUpdateDto, mid);
+
+    }
+
 
 
 

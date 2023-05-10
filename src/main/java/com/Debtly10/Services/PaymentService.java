@@ -8,6 +8,10 @@ import com.Debtly10.models.Mortgage;
 import com.Debtly10.models.Payment;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class PaymentService {
     private PaymentRepository paymentRepository;
@@ -28,11 +32,21 @@ public class PaymentService {
         float temp= mortgage.getLeftAmount();
         float newAmount = temp - payment.getAmount();
         mortgage.setLeftAmount(newAmount);
+        mortgage.setLastPaid(payment.getDate());
         mortgageRepository.save(mortgage);
         payment.setMortgage(mortgage);
         paymentRepository.save(payment);
         return " payment added successfully";
     }
+
+    public List<Payment> getAllPayment() {
+        return paymentRepository.findAll();
+    }
+
+    public void deletePayment(Long pid) {
+        paymentRepository.deleteById(pid);
+    }
+
 
 //    Mortgage mortgage= new Mortgage();
 //        mortgage.setGivenAmount(mortgageRegistrationDTO.getGivenAmount());
