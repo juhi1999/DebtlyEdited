@@ -31,7 +31,7 @@ public class MortgageService {
         mortgage.setLeftAmount(mortgageRegistrationDTO.getLeftAmount());
         mortgage.setProductName(mortgageRegistrationDTO.getProductName());
         mortgage.setMarketValue(mortgageRegistrationDTO.getMarketValue());
-        mortgage.setInterestRate(mortgage.getInterestRate());
+        mortgage.setInterestRate(mortgageRegistrationDTO.getInterestRate());
         Customer customer = customerRepository.findById(id).get();
         mortgage.setCustomer(customer);
         mortgageRepository.save(mortgage);
