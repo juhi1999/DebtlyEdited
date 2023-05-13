@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
 public class MortgageRegistrationDTO {
 
     private String productName;
@@ -14,8 +17,10 @@ public class MortgageRegistrationDTO {
 
     private float leftAmount;
 
+    @JsonFormat(pattern = "yyyy/MM/dd")
     private Date issueDate;
 
+    @JsonFormat(pattern = "yyyy/MM/dd")
     private Date lastPaid;
     private float interestRate;
 

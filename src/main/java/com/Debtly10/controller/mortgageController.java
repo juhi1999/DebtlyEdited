@@ -1,9 +1,6 @@
 package com.Debtly10.controller;
 
-import com.Debtly10.DTOS.CustomerRegistrationDTO;
-import com.Debtly10.DTOS.CustomerUpdateDto;
-import com.Debtly10.DTOS.MortgageRegistrationDTO;
-import com.Debtly10.DTOS.MortgageUpdateDto;
+import com.Debtly10.DTOS.*;
 import com.Debtly10.Services.MortgageService;
 import com.Debtly10.models.Customer;
 import com.Debtly10.models.Mortgage;
@@ -33,7 +30,7 @@ public class mortgageController {
     }
 
     @GetMapping("/get_mortgages")
-    public List<Mortgage> getMortgages(){
+    public List<MortgageFetchDTO> getMortgages(){
         return mortgageService.getAllMortgage();
     }
 

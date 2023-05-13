@@ -1,5 +1,6 @@
 package com.Debtly10.Services;
 
+import com.Debtly10.DTOS.MortgageFetchDTO;
 import com.Debtly10.DTOS.MortgageRegistrationDTO;
 import com.Debtly10.DTOS.MortgageUpdateDto;
 import com.Debtly10.Repository.CustomerRepository;
@@ -9,6 +10,7 @@ import com.Debtly10.models.Mortgage;
 import org.springframework.stereotype.Service;
 
 import javax.lang.model.type.NullType;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -78,8 +80,24 @@ public class MortgageService {
         return "mortgage updated successfully";
     }
 
-    public List<Mortgage> getAllMortgage() {
-        return mortgageRepository.findAll();
+    public List<MortgageFetchDTO> getAllMortgage() {
+        List<Mortgage> mortgages = mortgageRepository.findAll();
+        List<MortgageFetchDTO> dto = new ArrayList<>();
+        for (Mortgage mortgage : mortgages) {
+            dto.add(new MortgageFetchDTO(
+                    mortgage.getProductName(),
+                    mortgage.getMarketValue(),
+                    mortgage.getGivenAmount(),
+                    mortgage.getLeftAmount(),
+                    mortgage.getIssueDate(),
+                    mortgage.getLastPaid(),
+                    mortgage.getInterestRate(),
+                    mortgage.getCustomer().getId(),
+                    mortgage.getCustomer().getFirstName(),
+                    mortgage.getCustomer().getLastName()
+            ));
+        }
+        return dto;
     }
 
 
