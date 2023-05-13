@@ -22,6 +22,10 @@ public class CustomerRegistrationDTO {
         this.contact = contact;
     }
 
+    public CustomerRegistrationDTO() {
+
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }

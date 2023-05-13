@@ -20,8 +20,8 @@ public class customerController {
     }
 
     @PostMapping("/register_customer")
-    public String addCustomer(@RequestBody CustomerRegistrationDTO customerRegistrationDTO){
-       return customerService.addCustomer(customerRegistrationDTO);
+    public void addCustomer(@RequestBody CustomerRegistrationDTO customerRegistrationDTO){
+       customerService.addCustomer(customerRegistrationDTO);
     }
 
 

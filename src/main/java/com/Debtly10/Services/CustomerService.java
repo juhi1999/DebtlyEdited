@@ -17,7 +17,7 @@ public class CustomerService
         this.customerRepository = customerRepository;
     }
 
-    public String addCustomer(CustomerRegistrationDTO customerRegistrationDTO) {
+    public void addCustomer(CustomerRegistrationDTO customerRegistrationDTO) {
         Customer customer = new Customer();
         customer.setFirstName(customerRegistrationDTO.getFirstname());
         customer.setLastName(customerRegistrationDTO.getLastname());
@@ -25,7 +25,7 @@ public class CustomerService
         customer.setAddress(customerRegistrationDTO.getAddress());
         customer.setContact(customerRegistrationDTO.getContact());
         customerRepository.save(customer);
-        return "Customer registered Successfully";
+        System.out.println("Customer registered Successfully");
 
     }
 
