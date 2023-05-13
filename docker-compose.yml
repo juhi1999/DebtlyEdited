@@ -23,5 +23,5 @@ services:
     networks:
       - debtly-network
 
-  volumes:
-    db:
+volumes:
+  db:
