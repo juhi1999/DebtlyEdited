@@ -1,4 +1,4 @@
 FROM openjdk:8
-COPY ./target/Debtly-1.0-SNAPSHOT-shaded.jar ./
+COPY ./target/Debtly1.0-0.0.1-SNAPSHOT.jar ./
 WORKDIR ./
-CMD ["java", "-jar", "Debtly-1.0-SNAPSHOT-shaded.jar"]
+CMD ["java", "-jar", "Debtly1.0-0.0.1-SNAPSHOT.jar "]
