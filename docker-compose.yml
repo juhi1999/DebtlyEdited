@@ -22,3 +22,6 @@ services:
       - db:/var/lib/mysql
     networks:
       - debtly-network
+
+  volumes:
+    db:
