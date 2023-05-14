@@ -19,8 +19,8 @@ public class mortgageController {
     }
 
     @PostMapping("/register_mortgage/{cid}")
-    public String addMortgage(@RequestBody MortgageRegistrationDTO mortgageRegistrationDTO,@PathVariable Long cid){
-        return mortgageService.addMortgage(mortgageRegistrationDTO, cid);
+    public void addMortgage(@RequestBody MortgageRegistrationDTO mortgageRegistrationDTO,@PathVariable Long cid){
+         mortgageService.addMortgage(mortgageRegistrationDTO, cid);
     }
 
     @GetMapping("/mortgage_by_cid/{cid}")

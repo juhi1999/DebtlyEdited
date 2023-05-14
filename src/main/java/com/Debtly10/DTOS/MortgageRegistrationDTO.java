@@ -42,6 +42,10 @@ public class MortgageRegistrationDTO {
         this.interestRate= interestRate;
     }
 
+    public MortgageRegistrationDTO() {
+
+    }
+
     public float getInterestRate() {
         return interestRate;
     }

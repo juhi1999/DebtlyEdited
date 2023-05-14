@@ -25,7 +25,7 @@ public class MortgageService {
         this.customerRepository=customerRepository;
     }
 
-    public String addMortgage(MortgageRegistrationDTO mortgageRegistrationDTO, Long id) {
+    public void addMortgage(MortgageRegistrationDTO mortgageRegistrationDTO, Long id) {
         Mortgage mortgage= new Mortgage();
         mortgage.setGivenAmount(mortgageRegistrationDTO.getGivenAmount());
         mortgage.setLastPaid(mortgageRegistrationDTO.getLastPaid());
@@ -37,7 +37,7 @@ public class MortgageService {
         Customer customer = customerRepository.findById(id).get();
         mortgage.setCustomer(customer);
         mortgageRepository.save(mortgage);
-        return "mortgage added successfully";
+        //return "mortgage added successfully";
 
     }
 
@@ -100,5 +100,8 @@ public class MortgageService {
         return dto;
     }
 
-
+//
+//    public Object addMortgage(MortgageRegistrationDTO any) {
+//        return any;
+//    }
 }
