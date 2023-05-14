@@ -51,7 +51,7 @@ services:
     restart: always
     image: juhisohane/spe-major-backend:latest
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/Debtly?createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql/Debtly?createDatabaseIfNotExist=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     ports:
