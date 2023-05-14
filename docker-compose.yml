@@ -38,9 +38,7 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: Debtly
-      MYSQL_USER: spemajor
-      MYSQL_PASSWORD: Spemajor@1
-      MYSQL_ROOT_PASSWORD: Juhi@2003
+      MYSQL_ROOT_PASSWORD: root
 
     volumes:
       - mysql-volume:/var/lib/mysql
@@ -54,8 +52,8 @@ services:
     image: juhisohane/spe-major-backend:latest
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/Debtly?createDatabaseIfNotExist=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: spemajor
-      SPRING_DATASOURCE_PASSWORD: Spemajor@1
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     ports:
       - 9192:9192
     networks:
