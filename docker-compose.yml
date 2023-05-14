@@ -4,7 +4,7 @@ services:
     image: juhisohane/spe-major-backend
     restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/Debtly?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/Debtly?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     ports:
@@ -15,7 +15,7 @@ services:
       - db
 
   db:
-    image: mysql:5.7
+    image: mysql:8
     restart: always
     ports:
       - "3307:3306"
