@@ -1,32 +1,101 @@
-version: "3"
+#version: "3"
+#services:
+#  backend:
+#    image: juhisohane/spe-major-backend
+#    container_name: backendcontainer
+#    ports:
+#      - "9192:9192"
+#    networks:
+#      - debtly-network
+#    depends_on:
+#      - db
+#
+#  db:
+#    image: mysql:8
+#    container_name: databasecontainer
+#    ports:
+#      - "3307:3306"
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#      - MYSQL_DATABASE=Debtly
+#    volumes:
+#      - db:/var/lib/mysql
+#    networks:
+#      - debtly-network
+#
+#networks:
+# debtly-network:
+#
+#
+#
+#volumes:
+#  db:
+#
+version: '2.2'
 services:
-  backend:
-    image: juhisohane/spe-major-backend
-    container_name: backendcontainer
-    ports:
-      - "9192:9192"
-    networks:
-      - debtly-network
-    depends_on:
-      - db
-
-  db:
-    image: mysql:8
-    container_name: databasecontainer
-    ports:
-      - "3307:3306"
+  mysql:
+    image: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=Debtly
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Debtly
     volumes:
-      - db:/var/lib/mysql
+      - mysql-volume:/var/lib/mysql
+    ports:
+      - 3307:3306
     networks:
-      - debtly-network
+      - backend-net
 
-networks:
- debtly-network:
-
-
+  backend:
+    restart: always
+    build: .
+    #image: juhisohane/spe-major-backend:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/Debtly?createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - 9192:9192
+    networks:
+      - backend-net
+    depends_on:
+      - mysql
 
 volumes:
-  db:
+    mysql-volume:
+
+
+networks:
+    backend-net:
+####
+#version: "3.8"
+#services:
+#  backend:
+#    image: juhisohane/spe-major-backend:latest
+#    ports:
+#      - "9192:9192"
+#    environment:
+#      - DB_HOST=mysql
+#      - DB_PORT=3306
+#      - DB_USER=myuser
+#      - DB_PASSWORD=mypassword
+#      - DB_DATABASE=mydatabase
+#    depends_on:
+#      - mysql
+#    networks:
+#      - mynetwork
+#  mysql:
+#    image: mysql:5.7
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=mypassword
+#      - MYSQL_DATABASE=mydatabase
+#      - MYSQL_USER=myuser
+#      - MYSQL_PASSWORD=mypassword
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#    networks:
+#      - mynetwork
+#networks:
+#  mynetwork:
+#
+#volumes:
+#  mysql-data:
