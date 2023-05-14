@@ -1,4 +1,4 @@
-version: "3"
+version: "2.2"
 services:
   backend:
     image: juhisohane/spe-major-backend
@@ -23,14 +23,14 @@ services:
     volumes:
       - ./db:/var/lib/mysql
 
-
-  frontend:
-    image: juhisohane/spe-major-frontend
-    stdin_open: true               # To prevent the container from exiting abruptly.
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+#
+#  frontend:
+#    image: juhisohane/spe-major-frontend
+#    stdin_open: true               # To prevent the container from exiting abruptly.
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - backend
 #    networks:
 #      - debtly-network
 
