@@ -1,12 +1,25 @@
+#---
+#- name: copy docker-compose file
+#  hosts: all
+#  tasks:
+#    - name: copy docker-compose file
+#      copy:
+#        src: ./docker-compose.yml
+#        dest: ./
+#    - name:  docker-compose down
+#      command: docker-compose -f docker-compose.yml down
+#    - name: run docker-compose file
+#      command: docker-compose -f docker-compose.yml up -d
+
 ---
-- name: copy docker-compose file
+- name: docker-compose
   hosts: all
   tasks:
-    - name: copy docker-compose file
-      copy:
-        src: ./docker-compose.yml
-        dest: ./
-    - name:  docker-compose down
-      command: docker-compose -f docker-compose.yml down
-    - name: run docker-compose file
-      command: docker-compose -f docker-compose.yml up -d
+
+    - name: Retrieve Docker Compose file from backend repository
+      get_url:
+        url: "https://github.com/juhi1999/DebtlyEdited/blob/master/docker-compose.yml"
+        dest: "./docker-compose.yml"
+
+    - name: Start Docker Compose stack
+      shell: docker-compose up -d
