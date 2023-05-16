@@ -10,8 +10,8 @@
       command: docker-compose -f docker-compose.yml down
     - name: run docker-compose file
       command: docker-compose -f docker-compose.yml up -d
-    - name: docker-compose up
-      command: docker-compose -f docker-compose.yml up
+#    - name: docker-compose up
+#      command: docker-compose -f docker-compose.yml up
 #
 #---
 #- name: docker-compose
@@ -27,3 +27,4 @@
 #      command: docker-compose -f docker-compose.yml down
 #    - name: run docker-compose file
 #      command: docker-compose -f docker-compose.yml up -d
+#172.16.144.44
